@@ -33,6 +33,7 @@ BuildRequires: intltool
 BuildRequires: which
 BuildRequires: xml2po
 BuildRequires: mate-common
+BuildRequires: yelp-tools
 
 Requires:      mate-icon-theme
 Requires:      gsettings-desktop-schemas   
