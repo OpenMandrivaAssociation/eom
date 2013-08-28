@@ -1,7 +1,7 @@
 %define url_ver	%(echo %{version}|cut -d. -f1,2)
 %define oname  mate-image-viewer
-%define name   eom
-Name:          %{name}
+
+Name:          eom
 Version:       1.6.1
 Release:       1
 Summary:       Eye of MATE image viewer
@@ -12,6 +12,7 @@ Source0:       http://pub.mate-desktop.org/releases/%{url_ver}/%{oname}-%{versio
 
 BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig(gtk+-2.0)
+BuildRequires: pkgconfig(gtk-doc)
 BuildRequires: pkgconfig(libglade-2.0)
 BuildRequires: pkgconfig(libexif)
 BuildRequires: pkgconfig(exempi-2.0)
@@ -72,20 +73,17 @@ NOCONFIGURE=1 ./autogen.sh
 
 
 %install
-make install DESTDIR=$RPM_BUILD_ROOT
+%makeinstall_std
 
 desktop-file-install                               \
   --delete-original                                \
-  --dir $RPM_BUILD_ROOT%{_datadir}/applications    \
-$RPM_BUILD_ROOT%{_datadir}/applications/eom.desktop
-
-find ${RPM_BUILD_ROOT} -type f -name "*.la" -exec rm -f {} &#x27;;'
-find ${RPM_BUILD_ROOT} -type f -name "*.a" -exec rm -f {} &#x27;;'
+  --dir %{buildroot}%{_datadir}/applications    \
+%{buildroot}%{_datadir}/applications/eom.desktop
 
 %find_lang eom --with-gnome
 
 # save space by linking identical images in translated docs
-helpdir=$RPM_BUILD_ROOT%{_datadir}/mate/help/%{name}
+helpdir=%{buildroot}%{_datadir}/mate/help/%{name}
 for f in $helpdir/C/figures/*.png; do
   b="$(basename $f)"
   for d in $helpdir/*; do
