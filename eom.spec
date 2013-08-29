@@ -3,7 +3,7 @@
 
 Name:          eom
 Version:       1.6.1
-Release:       1
+Release:       2
 Summary:       Eye of MATE image viewer
 Group:         Graphical desktop/Other
 License:       GPLv2+ and LGPLv2+ 
@@ -39,7 +39,7 @@ BuildRequires: yelp-tools
 Requires:      mate-icon-theme
 Requires:      gsettings-desktop-schemas   
 
-Provides:      %{oname} = %{version}-%{release}
+%rename %{oname}
 
 %description
 This is the Eye of MATE, an image viewer program.  It is meant to be
