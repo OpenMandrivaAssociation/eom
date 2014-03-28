@@ -11,10 +11,7 @@ Url:		http://mate-desktop.org
 Source0:	http://pub.mate-desktop.org/releases/%{url_ver}/%{name}-%{version}.tar.xz
 BuildRequires:	gtk-doc
 BuildRequires:	intltool
-BuildRequires:	itstool
 BuildRequires:	mate-common
-BuildRequires:	which
-BuildRequires:	xml2po
 BuildRequires:	yelp-tools
 BuildRequires:	jpeg-devel
 BuildRequires:	pkgconfig(dbus-glib-1)
