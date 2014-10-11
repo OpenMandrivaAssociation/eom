@@ -3,7 +3,7 @@
 
 Summary:	Eye of MATE image viewer
 Name:		eom
-Version:	1.8.0
+Version:	1.8.1
 Release:	1
 Group:		Graphical desktop/Other
 License:	GPLv2+ and LGPLv2+ 
@@ -57,10 +57,9 @@ functionality to eom.
 %prep
 %setup -q
 %apply_patches
-NOCONFIGURE=1 ./autogen.sh
 
 %build
-%configure2_5x \
+%configure \
 	--disable-schemas-compile
            
 %make
