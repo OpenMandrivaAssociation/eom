@@ -29,6 +29,7 @@ BuildRequires:	pkgconfig(mate-desktop-2.0)
 BuildRequires:	pkgconfig(mate-icon-theme)
 BuildRequires:	pkgconfig(pygtk-2.0)
 BuildRequires:	pkgconfig(pygobject-2.0)
+BuildRequires:	pkgconfig(python3)
 BuildRequires:	pkgconfig(shared-mime-info)
 BuildRequires:	pkgconfig(xt)
 Requires:	librsvg
