@@ -3,8 +3,8 @@
 
 Summary:	Eye of MATE image viewer
 Name:		eom
-Version:	1.8.1
-Release:	2
+Version:	1.14.1
+Release:	1
 Group:		Graphical desktop/Other
 License:	GPLv2+ and LGPLv2+ 
 Url:		http://mate-desktop.org 
@@ -17,7 +17,7 @@ BuildRequires:	jpeg-devel
 BuildRequires:	pkgconfig(dbus-glib-1)
 BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(gsettings-desktop-schemas)
-BuildRequires:	pkgconfig(gtk+-2.0)
+BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	pkgconfig(exempi-2.0)
 BuildRequires:	pkgconfig(libart-2.0)
 BuildRequires:	pkgconfig(libglade-2.0)
@@ -26,10 +26,9 @@ BuildRequires:	pkgconfig(libxml-2.0)
 BuildRequires:	pkgconfig(librsvg-2.0)
 BuildRequires:	pkgconfig(lcms2)
 BuildRequires:	pkgconfig(mate-desktop-2.0)
-BuildRequires:	pkgconfig(mate-icon-theme)
 BuildRequires:	pkgconfig(pygtk-2.0)
 BuildRequires:	pkgconfig(pygobject-2.0)
-BuildRequires:	pkgconfig(python3)
+BuildRequires:	pkgconfig(python2)
 BuildRequires:	pkgconfig(shared-mime-info)
 BuildRequires:	pkgconfig(xt)
 Requires:	librsvg
@@ -60,8 +59,13 @@ functionality to eom.
 %apply_patches
 
 %build
+export PYTHON=python2
+
 %configure \
-	--disable-schemas-compile
+	--disable-schemas-compile \
+	--with-gtk=3.0 \
+	--disable-python \
+	--disable-introspection
            
 %make
 
@@ -79,6 +83,8 @@ rm -fr %{buildroot}%{_datadir}/MateConf
 %{_libdir}/eom/plugins
 %{_datadir}/applications/eom.desktop
 %{_datadir}/%{name}
+%{_datadir}/appdata/eom.appdata.xml
+%{_datadir}/glib-2.0/schemas/org.mate.eom.enums.xml
 %{_datadir}/glib-2.0/schemas/org.mate.eom.gschema.xml
 %{_datadir}/gtk-doc/html/eom
 %{_iconsdir}/hicolor/*/apps/eom.*
