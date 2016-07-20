@@ -16,6 +16,7 @@ BuildRequires:	yelp-tools
 BuildRequires:	jpeg-devel
 BuildRequires:	pkgconfig(dbus-glib-1)
 BuildRequires:	pkgconfig(glib-2.0)
+BuildRequires:	pkgconfig(gobject-introspection-1.0)
 BuildRequires:	pkgconfig(gsettings-desktop-schemas)
 BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	pkgconfig(exempi-2.0)
