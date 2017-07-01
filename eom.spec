@@ -3,7 +3,7 @@
 
 Summary:	Eye of MATE image viewer
 Name:		eom
-Version:	1.14.1
+Version:	1.18.2
 Release:	1
 Group:		Graphical desktop/Other
 License:	GPLv2+ and LGPLv2+ 
@@ -60,22 +60,17 @@ functionality to eom.
 %apply_patches
 
 %build
-export PYTHON=python2
-
+#export PYTHON=python2
 %configure \
 	--disable-schemas-compile \
-	--with-gtk=3.0 \
-	--disable-python \
-	--disable-introspection
-           
+	--disable-introspection \
+	%{nil}
 %make
 
 %install
 %makeinstall_std
 
-# remove unneeded converter
-rm -fr %{buildroot}%{_datadir}/MateConf
-
+# locales
 %find_lang eom --with-gnome --all-name
 
 %files -f eom.lang
