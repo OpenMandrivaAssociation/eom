@@ -1,5 +1,9 @@
 %define url_ver	%(echo %{version}|cut -d. -f1,2)
+
 %define oname  mate-image-viewer
+
+%define gi_major 1.0
+%define girname %mklibname %{name}-gir %{gi_major}
 
 Summary:	Eye of MATE image viewer
 Name:		eom
@@ -9,20 +13,24 @@ Group:		Graphical desktop/Other
 License:	GPLv2+ and LGPLv2+ 
 Url:		http://mate-desktop.org 
 Source0:	http://pub.mate-desktop.org/releases/%{url_ver}/%{name}-%{version}.tar.xz
-BuildRequires:	gtk-doc
+
+BuildRequires:	desktop-file-utils
 BuildRequires:	intltool
+BuildRequires:	itstool
 BuildRequires:	mate-common
-BuildRequires:	yelp-tools
-BuildRequires:	jpeg-devel
 BuildRequires:	pkgconfig(dbus-glib-1)
+BuildRequires:	pkgconfig(gdk-pixbuf-2.0)
+BuildRequires:	pkgconfig(gio-2.0)
 BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
 BuildRequires:	pkgconfig(gsettings-desktop-schemas)
 BuildRequires:	pkgconfig(gtk+-3.0)
+BuildRequires:	pkgconfig(gtk-doc)
 BuildRequires:	pkgconfig(exempi-2.0)
 BuildRequires:	pkgconfig(libart-2.0)
 BuildRequires:	pkgconfig(libglade-2.0)
 BuildRequires:	pkgconfig(libexif)
+BuildRequires:	pkgconfig(libjpeg)
 BuildRequires:	pkgconfig(libpeas-1.0)
 BuildRequires:	pkgconfig(libpeas-gtk-1.0)
 BuildRequires:	pkgconfig(libxml-2.0)
@@ -34,46 +42,29 @@ BuildRequires:	pkgconfig(pygobject-2.0)
 BuildRequires:	pkgconfig(python2)
 BuildRequires:	pkgconfig(shared-mime-info)
 BuildRequires:	pkgconfig(xt)
+BuildRequires:	yelp-tools
+
+Requires:	gsettings-desktop-schemas
 Requires:	librsvg
 Requires:	mate-icon-theme
-Requires:	gsettings-desktop-schemas   
+Requires:	mate-desktop-schemas
+Requires:	typelib(Peas)
+Requires:	typelib(PeasGtk)
+Requires:	typelib(Eom)
+
+
 %rename %{oname}
 
 %description
-This is the Eye of MATE, an image viewer program.  It is meant to be
-a fast and functional image viewer.
+The MATE Desktop Environment is the continuation of GNOME 2. It provides an
+intuitive and attractive desktop environment using traditional metaphors for
+Linux and other Unix-like operating systems.
 
-Eye of MATE is a fork of Eye of GNOME.
+MATE is under active development to add support for new technologies while
+preserving a traditional desktop experience.
 
-%package devel
-Summary:	C headers needed to build EOM plugins
-Group:		Development/C
-Requires:	%{name} = %{version}-%{release}
-Provides:	%{name}-devel = %{version}-%{release}
-%rename %{oname}-devel
-
-%description devel
-The Eye of MATE image viewer (eom) is the official image viewer for the
-MATE desktop. This package allows you to develop plugins that add new
-functionality to eom.
-
-%prep
-%setup -q
-%apply_patches
-
-%build
-#export PYTHON=python2
-%configure \
-	--disable-schemas-compile \
-	--disable-introspection \
-	%{nil}
-%make
-
-%install
-%makeinstall_std
-
-# locales
-%find_lang eom --with-gnome --all-name
+This package provides Eye of MATE, an image viewer program. It is meant to
+be a fast and functional image viewer.
 
 %files -f eom.lang
 %doc AUTHORS COPYING NEWS README
@@ -88,7 +79,57 @@ functionality to eom.
 %{_iconsdir}/hicolor/*/apps/eom.*
 %{_mandir}/man1/*
 
+#---------------------------------------------------------------------------
+
+%package devel
+Summary:	C headers needed to build EOM plugins
+Group:		Development/C
+Requires:	%{name} = %{version}-%{release}
+Requires:	%{girname} = %{version}-%{release}
+Provides:	%{name}-devel = %{version}-%{release}
+%rename		%{oname}-devel
+
+%description devel
+This package contains includes files for developing plugins based on EoM's
+API.
+
 %files devel
 %{_libdir}/pkgconfig/eom.pc
 %{_includedir}/eom-2.20
+
+#---------------------------------------------------------------------------
+
+%package -n %{girname}
+Summary:	GObject Introspection interface library for %{name}
+Group:		System/Libraries
+Requires:	%{libname} = %{version}-%{release}
+
+%description -n %{girname}
+This package contains GObject Introspection interface library for %{name}.
+
+%files -n %{girname}
+%{_libdir}/girepository-1.0/Eom-%{gi_major}.typelib
+
+#---------------------------------------------------------------------------
+
+%prep
+%setup -q
+%apply_patches
+
+%build
+export PYTHON=python2
+%configure \
+	--disable-schemas-compile \
+	--enable-introspection \
+	%{nil}
+%make
+
+%install
+%makeinstall_std
+
+# locales
+%find_lang eom --with-gnome --all-name
+
+%check
+desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
