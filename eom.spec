@@ -103,7 +103,7 @@ API.
 %package -n %{girname}
 Summary:	GObject Introspection interface library for %{name}
 Group:		System/Libraries
-Requires:	%{libname} = %{version}-%{release}
+#Requires:	%{libname} = %{version}-%{release}
 
 %description -n %{girname}
 This package contains GObject Introspection interface library for %{name}.
