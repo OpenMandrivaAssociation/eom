@@ -94,8 +94,9 @@ This package contains includes files for developing plugins based on EoM's
 API.
 
 %files devel
-%{_libdir}/pkgconfig/eom.pc
 %{_includedir}/eom-2.20
+%{_libdir}/pkgconfig/eom.pc
+%{_datadir}/gir-1.0/Eom-%{gi_major}.gir
 
 #---------------------------------------------------------------------------
 
