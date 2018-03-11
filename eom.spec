@@ -8,10 +8,10 @@
 Summary:	Eye of MATE image viewer
 Name:		eom
 Version:	1.18.2
-Release:	1
+Release:	2
 Group:		Graphical desktop/Other
-License:	GPLv2+ and LGPLv2+ 
-Url:		http://mate-desktop.org 
+License:	GPLv2+ and LGPLv2+
+Url:		http://mate-desktop.org
 Source0:	http://pub.mate-desktop.org/releases/%{url_ver}/%{name}-%{version}.tar.xz
 
 BuildRequires:	desktop-file-utils
@@ -133,4 +133,3 @@ export PYTHON=python2
 
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
-
