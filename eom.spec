@@ -7,7 +7,7 @@
 
 Summary:	Eye of MATE image viewer
 Name:		eom
-Version:	1.20.0
+Version:	1.20.2
 Release:	1
 Group:		Graphical desktop/Other
 License:	GPLv2+ and LGPLv2+
@@ -115,7 +115,7 @@ This package contains GObject Introspection interface library for %{name}.
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 
 %build
 export PYTHON=python2
@@ -123,10 +123,10 @@ export PYTHON=python2
 	--disable-schemas-compile \
 	--enable-introspection \
 	%{nil}
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 # locales
 %find_lang eom --with-gnome --all-name
