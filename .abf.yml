@@ -2,5 +2,6 @@ removed_sources:
   eom-1.14.1.tar.xz: df3e91693122053e97a87ca02119b2deda74e475
   eom-1.18.2.tar.xz: 76d69612b910c89070b96de426de51b5b55b3631
   eom-1.20.0.tar.xz: ea2cfa16231fe02d5f39e8386e78210de009109a
-sources:
   eom-1.20.2.tar.xz: 16e956a335b4b504ac977d6b41135667adee7344
+sources:
+  eom-1.22.1.tar.xz: dab7740813e495369eced9935b9f72c1c662198a
