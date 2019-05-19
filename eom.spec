@@ -72,7 +72,7 @@ be a fast and functional image viewer.
 %{_libdir}/eom/plugins
 %{_datadir}/applications/eom.desktop
 %{_datadir}/%{name}
-%{_datadir}/appdata/eom.appdata.xml
+%{_datadir}/metainfo/eom.appdata.xml
 %{_datadir}/glib-2.0/schemas/org.mate.eom.enums.xml
 %{_datadir}/glib-2.0/schemas/org.mate.eom.gschema.xml
 %{_datadir}/gtk-doc/html/eom
