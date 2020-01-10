@@ -37,9 +37,6 @@ BuildRequires:	pkgconfig(libxml-2.0)
 BuildRequires:	pkgconfig(librsvg-2.0)
 BuildRequires:	pkgconfig(lcms2)
 BuildRequires:	pkgconfig(mate-desktop-2.0)
-BuildRequires:	pkgconfig(pygtk-2.0)
-BuildRequires:	pkgconfig(pygobject-2.0)
-BuildRequires:	pkgconfig(python)
 BuildRequires:	pkgconfig(shared-mime-info)
 BuildRequires:	pkgconfig(xt)
 BuildRequires:	yelp-tools
@@ -118,7 +115,6 @@ This package contains GObject Introspection interface library for %{name}.
 %autopatch -p1
 
 %build
-#export PYTHON=python2
 %configure \
 	--disable-schemas-compile \
 	--enable-introspection \
@@ -130,6 +126,3 @@ This package contains GObject Introspection interface library for %{name}.
 
 # locales
 %find_lang eom --with-gnome --all-name
-
-%check
-desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
