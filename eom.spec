@@ -7,7 +7,7 @@
 
 Summary:	Eye of MATE image viewer
 Name:		eom
-Version:	1.22.1
+Version:	1.22.2
 Release:	1
 Group:		Graphical desktop/Other
 License:	GPLv2+ and LGPLv2+
@@ -39,7 +39,7 @@ BuildRequires:	pkgconfig(lcms2)
 BuildRequires:	pkgconfig(mate-desktop-2.0)
 BuildRequires:	pkgconfig(pygtk-2.0)
 BuildRequires:	pkgconfig(pygobject-2.0)
-BuildRequires:	pkgconfig(python2)
+BuildRequires:	pkgconfig(python)
 BuildRequires:	pkgconfig(shared-mime-info)
 BuildRequires:	pkgconfig(xt)
 BuildRequires:	yelp-tools
@@ -118,7 +118,7 @@ This package contains GObject Introspection interface library for %{name}.
 %autopatch -p1
 
 %build
-export PYTHON=python2
+#export PYTHON=python2
 %configure \
 	--disable-schemas-compile \
 	--enable-introspection \
