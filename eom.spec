@@ -16,7 +16,7 @@ Source0:	http://pub.mate-desktop.org/releases/%{url_ver}/%{name}-%{version}.tar.
 
 BuildRequires:	desktop-file-utils
 BuildRequires:	intltool
-BuildRequires:	itstool
+#BuildRequires:	itstool
 BuildRequires:	mate-common
 BuildRequires:	pkgconfig(dbus-glib-1)
 BuildRequires:	pkgconfig(gdk-pixbuf-2.0)
@@ -126,6 +126,3 @@ This package contains GObject Introspection interface library for %{name}.
 
 # locales
 %find_lang eom --with-gnome --all-name
-
-%check
-desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
