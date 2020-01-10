@@ -16,7 +16,7 @@ Source0:	http://pub.mate-desktop.org/releases/%{url_ver}/%{name}-%{version}.tar.
 
 BuildRequires:	desktop-file-utils
 BuildRequires:	intltool
-#BuildRequires:	itstool
+BuildRequires:	itstool
 BuildRequires:	mate-common
 BuildRequires:	pkgconfig(dbus-glib-1)
 BuildRequires:	pkgconfig(gdk-pixbuf-2.0)
