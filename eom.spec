@@ -7,13 +7,14 @@
 
 Summary:	Eye of MATE image viewer
 Name:		eom
-Version:	1.22.2
+Version:	1.24.0
 Release:	1
 Group:		Graphical desktop/Other
 License:	GPLv2+ and LGPLv2+
 Url:		http://mate-desktop.org
 Source0:	http://pub.mate-desktop.org/releases/%{url_ver}/%{name}-%{version}.tar.xz
 
+BuildRequires:	autoconf-archive
 BuildRequires:	desktop-file-utils
 BuildRequires:	intltool
 BuildRequires:	itstool
