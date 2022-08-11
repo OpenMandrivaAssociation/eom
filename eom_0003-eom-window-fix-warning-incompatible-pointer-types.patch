@@ -1,0 +1,25 @@
+From 8b7333ee23775df9c1dce27230f76b3cb6eb4855 Mon Sep 17 00:00:00 2001
+From: rbuj <robert.buj@gmail.com>
+Date: Thu, 21 Oct 2021 10:05:46 +0200
+Subject: [PATCH 3/3] eom-window: fix warning incompatible-pointer-types
+
+---
+ src/eom-window.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/eom-window.c b/src/eom-window.c
+index 607b2fb..ccb97cf 100644
+--- a/src/eom-window.c
++++ b/src/eom-window.c
+@@ -4343,7 +4343,7 @@ eom_window_open_editor (GtkAction *action,
+ 	file = eom_image_get_file (window->priv->image);
+ 	files = g_list_append (files, file);
+ 
+-	g_app_info_launch (app_info, &files,
++	g_app_info_launch (app_info, files,
+                            G_APP_LAUNCH_CONTEXT (context), NULL);
+ 
+ 	g_list_free (files);
+-- 
+2.36.1
+

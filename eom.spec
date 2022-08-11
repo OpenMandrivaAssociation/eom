@@ -1,6 +1,6 @@
-%define url_ver	%(echo %{version}|cut -d. -f1,2)
+%define url_ver %(echo %{version}|cut -d. -f1,2)
 
-%define oname  mate-image-viewer
+%define oname mate-image-viewer
 
 %define gi_major 1.0
 %define girname %mklibname %{name}-gir %{gi_major}
@@ -8,11 +8,14 @@
 Summary:	Eye of MATE image viewer
 Name:		eom
 Version:	1.26.0
-Release:	2
+Release:	3
 Group:		Graphical desktop/Other
 License:	GPLv2+ and LGPLv2+
 Url:		http://mate-desktop.org
 Source0:	http://pub.mate-desktop.org/releases/%{url_ver}/%{name}-%{version}.tar.xz
+Patch1:		eom_0001-Add-support-for-libexif-0.6.14.patch
+Patch2:		eom_0002-Accessibility-add-proper-mnemonic-relations-and-labe.patch
+Patch3:		eom_0003-eom-window-fix-warning-incompatible-pointer-types.patch
 
 BuildRequires:	autoconf-archive
 BuildRequires:	desktop-file-utils
@@ -40,6 +43,7 @@ BuildRequires:	pkgconfig(lcms2)
 BuildRequires:	pkgconfig(mate-desktop-2.0)
 BuildRequires:	pkgconfig(shared-mime-info)
 BuildRequires:	pkgconfig(xt)
+BuildRequires:	pkgconfig(MagickWand)
 BuildRequires:	yelp-tools
 
 Requires:	gsettings-desktop-schemas
@@ -67,15 +71,17 @@ be a fast and functional image viewer.
 %files -f eom.lang
 %doc AUTHORS COPYING NEWS README
 %{_bindir}/eom
+%{_bindir}/eom-thumbnailer
 %{_libdir}/eom/plugins
 %{_datadir}/applications/eom.desktop
 %{_datadir}/%{name}
+%{_datadir}/thumbnailers/eom-thumbnailer.thumbnailer
 %{_datadir}/metainfo/eom.appdata.xml
 %{_datadir}/glib-2.0/schemas/org.mate.eom.enums.xml
 %{_datadir}/glib-2.0/schemas/org.mate.eom.gschema.xml
 %{_datadir}/gtk-doc/html/eom
 %{_iconsdir}/hicolor/*/apps/eom.*
-%{_mandir}/man1/*
+%doc %{_mandir}/man1/*
 
 #---------------------------------------------------------------------------
 
@@ -112,14 +118,15 @@ This package contains GObject Introspection interface library for %{name}.
 #---------------------------------------------------------------------------
 
 %prep
-%setup -q
-%autopatch -p1
+%autosetup -p1
 
 %build
 %configure \
 	--disable-schemas-compile \
 	--enable-introspection \
-	%{nil}
+	--enable-thumbnailer \
+	--without-gdk-pixbuf-thumbnailer
+
 %make_build
 
 %install
