@@ -7,15 +7,13 @@
 
 Summary:	Eye of MATE image viewer
 Name:		eom
-Version:	1.26.0
-Release:	3
+Version:	1.26.1
+Release:	1
 Group:		Graphical desktop/Other
 License:	GPLv2+ and LGPLv2+
 Url:		http://mate-desktop.org
 Source0:	http://pub.mate-desktop.org/releases/%{url_ver}/%{name}-%{version}.tar.xz
-Patch1:		eom_0001-Add-support-for-libexif-0.6.14.patch
-Patch2:		eom_0002-Accessibility-add-proper-mnemonic-relations-and-labe.patch
-Patch3:		eom_0003-eom-window-fix-warning-incompatible-pointer-types.patch
+
 
 BuildRequires:	autoconf-archive
 BuildRequires:	desktop-file-utils
