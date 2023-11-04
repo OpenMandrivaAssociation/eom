@@ -14,7 +14,6 @@ License:	GPLv2+ and LGPLv2+
 Url:		http://mate-desktop.org
 Source0:	http://pub.mate-desktop.org/releases/%{url_ver}/%{name}-%{version}.tar.xz
 
-
 BuildRequires:	autoconf-archive
 BuildRequires:	desktop-file-utils
 BuildRequires:	intltool
@@ -50,7 +49,6 @@ Requires:	mate-desktop-schemas
 Requires:	typelib(Peas)
 Requires:	typelib(PeasGtk)
 Requires:	typelib(Eom)
-
 
 %rename %{oname}
 
@@ -118,6 +116,7 @@ This package contains GObject Introspection interface library for %{name}.
 %autosetup -p1
 
 %build
+export LDFLAGS="-L%{_libdir}/"
 %configure \
 	--disable-schemas-compile \
 	--enable-introspection \
@@ -131,3 +130,4 @@ This package contains GObject Introspection interface library for %{name}.
 
 # locales
 %find_lang eom --with-gnome --all-name
+
