@@ -77,7 +77,6 @@ be a fast and functional image viewer.
 %{_datadir}/metainfo/eom.appdata.xml
 %{_datadir}/glib-2.0/schemas/org.mate.eom.enums.xml
 %{_datadir}/glib-2.0/schemas/org.mate.eom.gschema.xml
-%{_datadir}/gtk-doc/html/eom
 %{_iconsdir}/hicolor/*/apps/eom.*
 %doc %{_mandir}/man1/*
 
@@ -123,7 +122,7 @@ export LDFLAGS="-L%{_libdir}/"
 %meson	\
 	-Dnls=true \
 	-Dthumbnailer=true \
-	-Dgdk-pixbuf-thumbnailer=true \
+	-Dgdk-pixbuf-thumbnailer=false \
 	-Dintrospection=enabled \
 	-Dxmp=enabled \
 	-Dlibexif=enabled \
