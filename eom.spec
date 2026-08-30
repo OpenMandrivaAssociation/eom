@@ -7,17 +7,16 @@
 
 Summary:	Eye of MATE image viewer
 Name:		eom
-Version:	1.28.0
-Release:	2
+Version:	1.28.1
+Release:	1
 Group:		Graphical desktop/Other
 License:	GPLv2+ and LGPLv2+
 Url:		https://mate-desktop.org
-Source0:	http://pub.mate-desktop.org/releases/%{mate_ver}/%{name}-%{version}.tar.xz
+#Source0:	http://pub.mate-desktop.org/releases/%{mate_ver}/%{name}-%{version}.tar.xz
+# Use for now tarball from GitHub because from few months sources at mate-desktop.org was not updated.
+Source0:	https://github.com/mate-desktop/eom/releases/download/v%{version}/eom-%{version}.tar.xz
 
-BuildRequires:	automake
-BuildRequires:	libtool-base
-BuildRequires:	slibtool
-BuildRequires:	make
+BuildRequires:	meson
 BuildRequires:	autoconf-archive
 BuildRequires:	desktop-file-utils
 BuildRequires:	intltool
@@ -121,17 +120,21 @@ This package contains GObject Introspection interface library for %{name}.
 
 %build
 export LDFLAGS="-L%{_libdir}/"
-%configure \
-	--disable-schemas-compile \
-	--enable-introspection \
-	--enable-thumbnailer \
-	--without-gdk-pixbuf-thumbnailer
+%meson	\
+	-Dnls=true \
+	-Dthumbnailer=true \
+	-Dgdk-pixbuf-thumbnailer=true \
+	-Dintrospection=enabled \
+	-Dxmp=enabled \
+	-Dlibexif=enabled \
+	-Dcms=enabled \
+	-Djpeg=enabled \
+	-Dlibrsvg=enabled
 
-%make_build
+%meson_build
 
 %install
-%make_install
+%meson_install
 
 # locales
 %find_lang eom --with-gnome --all-name
-
